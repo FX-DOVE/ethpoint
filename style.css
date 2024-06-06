@@ -2,9 +2,12 @@
     margin: 0;
     padding: 0;
 }
+body{
+    width: 100%;
+    height: 100%;
+}
 header{
     width: 100%;
-    height: 60px;
     background-color: rgba(12, 47, 85, 1);
     text-align: center;
     align-items: center;
@@ -47,17 +50,18 @@ section{
 }
 
 .coin-brand-wrapper{
-    width: 80%;
+    width: 70%;
+    height: 30%;
     margin:auto;
     margin-top: 8em ;
-    align-items: center;
     display: flex;
     justify-content: center;
+  
 }
 .coin img{
-    height: 300px;
-    min-width: 300px;
-    max-width: 600px;
+    height: 100%;
+    width: 100%;
+    
 }
 
 .tap-counter{
