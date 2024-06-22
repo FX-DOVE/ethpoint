@@ -1,15 +1,11 @@
 .boost-container{
-   height: 30%;
-    width: 30%;
-    margin: 1.5em  auto;
-    display: flex;
-    flex-direction: column;
+    margin: 2em auto;
+    max-height: 30vh;
+   display: flex;
+ flex-direction: column;
  align-self: stretch;
-    align-items: center;
-    text-align: center;
-    line-height: 3em;
-    gap: 2em;
-    padding: 10px 20px 30px 10px;
+  align-items: center;
+  text-align: center;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.2);
     color: white;
@@ -18,8 +14,8 @@
 .boost-options{
     text-align: left;
     width: 90%;
-margin: 0 auto;
-    line-height: 3em;
+   margin: 0 auto;
+    line-height: 2.5em;
 
 }
 
@@ -37,8 +33,14 @@ margin: 0 auto;
 
 
 .boost-sect2{
-   width: 80%; 
-   background-color: red;
    height: 30px;
-   margin: auto;
+   margin:2em auto;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.boost-sect2 img{
+    width: 50px;
+    height: 50px;
+    
 }

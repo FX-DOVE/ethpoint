@@ -33,6 +33,11 @@ header{
 .brand{
     font-size: 2em;
 }
+.fixed-width{
+    min-width: 80%;
+    padding: 10px 20px 30px 10px;
+ 
+}
 
 .balance-wrapper{
     min-width: 100%;
