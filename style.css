@@ -13,9 +13,16 @@ body{
     justify-content: center;
     max-height: 100vh;
     margin: 0;
+    background-color: rgba(12, 47, 85, 1);
 }
 h1,h2,h3,h4,h5,h6,a,span,div,form,input,li{
     font-family: "kumar one";
+}
+div{
+    margin-top: 0.8em;
+    font-size: 0.8em;
+    font-weight: none;
+ 
 }
 section{
     min-width: 100%;
@@ -49,6 +56,7 @@ header{
     justify-content: center;
 }
 .balance{
+    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,9 +64,10 @@ header{
     padding: 0.8em 0 0.8em 0;
 }
 #balance{
-    font-size: 2em;
+    font-family:'poppins';
+    font-size:3.5em;
     color: white;
-    font-weight: 600;
+    font-weight: 900!important;
 }
 .balance img{
     width: 40px;
