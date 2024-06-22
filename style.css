@@ -111,12 +111,13 @@ header{
     font-weight: 500;
 }
 .navs{
-    width: 95%;
+    width: 100%;
     margin: auto;
     display: flex;
     justify-content: space-between;
     position: relative;
     height: 10vh;
+    background-color: rgba(8, 25, 43, 1);
 
 }
 .navs img{
