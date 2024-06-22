@@ -115,7 +115,7 @@ header{
     margin: auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     position: relative;
     height: 10vh;
     background-color: rgba(8, 25, 43, 1);
