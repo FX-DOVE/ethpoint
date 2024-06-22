@@ -122,9 +122,11 @@ width: 40px;
     .coin img{
         width: 300px;
         height: 300px;
+        overflow: hidden;
     }
     .coin-brand-wrapper{
         margin-top: 0;
+        overflow: hidden;
     }
 }
 
@@ -132,9 +134,11 @@ width: 40px;
     .coin img{
         width: 200px;
         height: 200px;
+        overflow: hidden;
     }
     .coin-brand-wrapper{
         margin-top: 0;
+        overflow: hidden;
     }
 }
 
