@@ -1,0 +1,36 @@
+
+.task-container{
+    height: 40vh;
+}
+
+.task-options{
+    margin-top: 1em;
+    padding: 1.5em 2m;
+    overflow-Y:scroll;
+    scrollbar-width: none;
+    
+}
+.task{
+    margin-top: 1em;   
+     display: flex;
+    flex-direction: row;
+    gap: 0.8em;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+.task-options button{
+    padding: 0.2em 0.5em; 
+    background-color: rgba(16, 61, 110, 1);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    color:white;
+   
+}
+.task-options button:hover{
+    background-color: hsl(211, 75%, 50%);
+}
+.task-options button:hover:active{
+    background-color: hsl(211, 75%, 80%);
+}
