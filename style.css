@@ -11,7 +11,7 @@ body{
     display: flex;
     min-width: 100%;
     justify-content: center;
-    min-height: 100vh;
+    max-height: 100vh;
     margin: 0;
     background-color: rgba(12, 47, 85, 1);
 }
@@ -19,14 +19,14 @@ h1,h2,h3,h4,h5,h6,a,span,div,form,input,li{
     font-family: "kumar one";
 }
 div{
-
+    margin-top: 0.8em;
     font-size: 0.8em;
     font-weight: none;
  
 }
 section{
     min-width: 100%;
-    min-height: 100vh;
+    max-height: 100%;
     display: flex;
     flex-direction: column;
     background-image: url(/background.png);
@@ -71,13 +71,13 @@ header{
 }
 .balance img{
     width: 40px;
-    min-height: 30px;
+    max-height: 40px;
    
     
 }
 .coin-brand-wrapper{
     min-width: 100%;
-    min-height: 30vh;
+    height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,6 +86,7 @@ header{
 }
 .coin{
     min-width: 80%;
+  
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -93,7 +94,7 @@ header{
 }
 .coin img{
     width: 400px;
-    min-height: 10vh;
+    height: 400px;
 }
 
 .tap-counter{
@@ -125,12 +126,12 @@ header{
     align-items: center;
     justify-content: space-evenly;
     position: relative;
-    min-height: 10vh;
+    height: 10vh;
     background-color: rgba(8, 25, 43, 1);
 
 }
 .navs img{
-min-height: 40px;
+height: 40px;
 width: 40px;
 
 
@@ -142,7 +143,7 @@ width: 40px;
     }
     .coin img{
         width: 300px;
-        min-height: 10px;
+        height: 300px;
         overflow: hidden;
     }
     .coin-brand-wrapper{
@@ -154,7 +155,7 @@ width: 40px;
 @media screen and (max-width:400px) {
     .coin img{
         width: 200px;
-        min-height: 8px;
+        height: 200px;
         overflow: hidden;
     }
     .coin-brand-wrapper{
@@ -166,9 +167,9 @@ width: 40px;
 @media screen and (max-width:350px) {
     .coin img{
         width: 150px;
-        min-height: 5px;
+        height: 150px;
     }
     .coin-brand-wrapper{
-        margin-top: 2vh;
+        margin-top: 0;
     }
 }
