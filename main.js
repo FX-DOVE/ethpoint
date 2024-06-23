@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         remaining.textContent = count;
         for (let i = 0; i < addValue; i++) {
           animateNumber();
+         
         }
       }
       if (count === 0) {
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       let number = document.createElement('h5');
       number.textContent = '1';
       number.style.position = 'absolute';
-      number.style.left = icon.getBoundingClientRect().left + 'px';
+      number.style.left = icon.getBoundingClientRect().center + 'px';
       number.style.top = icon.getBoundingClientRect().top + 'px';
       document.body.appendChild(number);
   
