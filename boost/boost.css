@@ -1,51 +1,72 @@
-.boost-container{
-    margin: 2.5em auto;
-    max-height: 30vh;
-   display: flex;
- flex-direction: column;
- align-self: stretch;
+.boost-container {
+  margin: 2.5em auto;
+  max-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
   align-items: center;
   text-align: center;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: white;
-    max-width: 50vh;
-  
-}
-.boost-options{
-    text-align: left;
-    width: 90%;
-   margin: 1 auto;
-    line-height: 2.5em;
-    
-
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  max-width: 50rem;
+  padding: 1.5em 1em;
 }
 
-.option{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.boost-container h1 {
+  text-transform: capitalize;
 }
 
-.boost-options  img{
-    width: 30px;
-    height: 30px;
-
+.boost-options {
+  text-align: left;
+  width: 90%;
+  margin: 1em auto;
+  line-height: 2.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
 }
 
-
-.boost-sect2{
-   height: 30px;
-   margin:2em auto;
-   display: flex;
-   align-items: center;
-   align-self: center;
-   justify-content: space-around;
-
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
-.boost-sect2 img{
-    margin-top: 1.5em;
-    width: 70%;
-    height: 70px;
-    
+
+.option h1 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.boost-options img {
+  width: 30px;
+  height: 30px;
+}
+
+.boost-sect2 {
+  margin: 2em auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1.5em;
+  flex-wrap: wrap;
+}
+
+.boost-sect2 img {
+  margin-top: 1.5em;
+  width: 70%;
+  max-width: 220px;
+  height: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .boost-container {
+    max-height: none;
+  }
+
+  .boost-sect2 img {
+    width: 100%;
+    max-width: 180px;
+  }
 }

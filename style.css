@@ -1,175 +1,208 @@
-*
-{
-    margin: 0;
-    padding: 0;
-    
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-
-body{
-    font-family: kumar system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    display: flex;
-    min-width: 100%;
-    justify-content: center;
-    max-height: 100vh;
-    margin: 0;
-    background-color: rgba(12, 47, 85, 1);
-}
-h1,h2,h3,h4,h5,h6,a,span,div,form,input,li{
-    font-family: "kumar one";
-}
-div{
-    margin-top: 0.8em;
-    font-size: 0.8em;
-    font-weight: none;
- 
-}
-section{
-    min-width: 100%;
-    max-height: 100%;
-    display: flex;
-    flex-direction: column;
-    background-image: url(/background.png);
-    background-size: cover;
-    background-position: center;
-  
-}
-header{
-    padding: 0.8em;
-    background-color: rgba(12, 47, 85, 1);
-    text-align: center;
-    color: white;
-}
-.brand{
-    font-size: 2em;
-}
-.fixed-width{
-    min-width: 80%;
-    padding: 10px 20px 30px 10px;
- 
+body {
+  font-family: "Kumar One", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: flex;
+  min-width: 100%;
+  justify-content: center;
+  max-height: 100vh;
+  margin: 0;
+  background-color: rgba(12, 47, 85, 1);
 }
 
-.balance-wrapper{
-    min-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.balance{
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5em;
-    padding: 0.8em 0 0.8em 0;
-}
-#balance{
-    font-family:'poppins';
-    font-size:3.5em;
-    color: white;
-    font-weight: 900!important;
-}
-.balance img{
-    width: 40px;
-    max-height: 40px;
-   
-    
-}
-.coin-brand-wrapper{
-    min-width: 100%;
-    height: 50vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 4em;
-   
-}
-.coin{
-    min-width: 80%;
-  
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.coin img{
-    width: 400px;
-    height: 400px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+span,
+div,
+form,
+input,
+li {
+  font-family: "Kumar One";
 }
 
-.tap-counter{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    color: white;
-   
-}
-.counter-area{
-    margin-right: 0.5em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5em;
-}
-.initial-count{
-    border: 5px;
-    border: 2px solid rgba(8, 25, 43, 1);
-    padding:  0.5em 1.5em 0.5em 1.5em;
-    font-size: 1.2em;
-    font-weight: 500;
-}
-.navs{
-    width: 100%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    position: relative;
-    height: 10vh;
-    background-color: rgba(8, 25, 43, 1);
-
-}
-.navs img{
-height: 40px;
-width: 40px;
-
-
+div {
+  margin-top: 0.8em;
+  font-size: 0.8em;
+  font-weight: normal;
 }
 
-@media screen and (max-width:700px) {
-    span{
-        font-size: 18px;
-    }
-    .coin img{
-        width: 300px;
-        height: 300px;
-        overflow: hidden;
-    }
-    .coin-brand-wrapper{
-        margin-top: 0;
-        overflow: hidden;
-    }
+section {
+  min-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url('background.png');
+  background-size: cover;
+  background-position: center;
 }
 
-@media screen and (max-width:400px) {
-    .coin img{
-        width: 200px;
-        height: 200px;
-        overflow: hidden;
-    }
-    .coin-brand-wrapper{
-        margin-top: 0;
-        overflow: hidden;
-    }
+header {
+  padding: 0.8em;
+  background-color: rgba(12, 47, 85, 1);
+  text-align: center;
+  color: white;
 }
 
-@media screen and (max-width:350px) {
-    .coin img{
-        width: 150px;
-        height: 150px;
-    }
-    .coin-brand-wrapper{
-        margin-top: 0;
-    }
+.brand {
+  font-size: 2em;
+}
+
+.fixed-width {
+  min-width: 80%;
+  padding: 10px 20px 30px 10px;
+}
+
+.balance-wrapper {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.balance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.8em 0;
+}
+
+#balance {
+  font-family: 'Krub', sans-serif;
+  font-size: 3.5em;
+  color: white;
+  font-weight: 900;
+}
+
+.balance img {
+  width: 40px;
+  max-height: 40px;
+}
+
+.coin-brand-wrapper {
+  min-width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4em;
+}
+
+.coin {
+  min-width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coin img {
+  width: 400px;
+  height: 400px;
+}
+
+.tap-counter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: white;
+}
+
+.counter-area {
+  margin-right: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.initial-count {
+  border: 2px solid rgba(8, 25, 43, 1);
+  padding: 0.5em 1.5em;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.navs {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  height: 10vh;
+  background-color: rgba(8, 25, 43, 1);
+}
+
+.navs img {
+  height: 40px;
+  width: 40px;
+}
+
+.floating-number {
+  position: fixed;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 0);
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  z-index: 1000;
+}
+
+.floating-number--visible {
+  opacity: 1;
+  transform: translate(-50%, -40px);
+}
+
+@media screen and (max-width: 700px) {
+  span {
+    font-size: 18px;
+  }
+
+  .coin img {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .coin-brand-wrapper {
+    margin-top: 0;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .coin img {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .coin-brand-wrapper {
+    margin-top: 0;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .coin img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .coin-brand-wrapper {
+    margin-top: 0;
+  }
 }
