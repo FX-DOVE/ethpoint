@@ -1,70 +1,165 @@
-
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EthPoint</title>
+    <link rel="stylesheet" href="style.css" />
     <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Kumar One:wght@400&display=swap"
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Krub:wght@700&display=swap"
-  />
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Kumar+One:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Krub:wght@700&display=swap"
+    />
+  </head>
+  <body>
+    <section class="containers">
+      <section class="container" aria-live="polite">
+        <header class="player-header">
+          <div class="balance-wrapper">
+            <div class="balance">
+              <img src="assets/images/Ellipse 1.png" alt="Token icon" />
+              <span id="balance">0</span>
+            </div>
+            <div class="player-meta">
+              <span class="meta-item"
+                >Plan: <strong id="plan-name">Free</strong></span
+              >
+              <span class="meta-item"
+                >Cash balance: <strong id="cash-balance">0</strong></span
+              >
+            </div>
+          </div>
+          <button id="logout-button" type="button" class="secondary-action">Log out</button>
+        </header>
 
-</head>
-<body>
-  <section class="containers">
-   
-    <section class="conatiner">
-     <div class="balance-wrapper">
-      <div class="balance">
-        <img src="assets/images/Ellipse 1.png" alt=""> 
-        <span id="balance" itemid="balance">100000</span>
-      </div>
-     </div>
-
-
-     <div class="coin-brand-wrapper">
-        <div class="coin">
-            <img id="icon"  src="assets/images/Ellipse 1.png" alt="">
+        <div class="coin-brand-wrapper">
+          <div class="coin">
+            <img id="icon" src="assets/images/Ellipse 1.png" alt="Tap to earn" />
+          </div>
         </div>
-     </div>
 
+        <div class="tap-counter" aria-live="polite">
+          <div class="counter-area">
+            <p class="initial-count" id="outOff">0</p>
+            <p class="remainig-count" id="remaining">0</p>
+          </div>
+        </div>
 
-  <div class="tap-counter">
-    <div class="counter-area">
-        <p class="initial-count" id="outOff"> 1000</p>
-        <p class="remainig-count" id="remaining"> 1000</p>
-    </div>
-  </div>
+        <div class="primary-actions">
+          <button id="cashout-button" type="button" class="primary-action">
+            Cash out
+          </button>
+          <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+        </div>
 
-
-
-  <div class="navs">
-    <a href="index.html" class="links"><img id="upgrade-button" src="assets/images/Group 44.png" alt=""></a>
-    <a href="boost/boost.html" class="links"><img src="assets/images/Group 45.png" alt=""></a>
-    <a href="./boost/task/task.html"  class="links"><img src="assets/images/Group 46.png" alt=""></a>
-    <a href="./boost/task/ref/ref.html" class="links"><img src="assets/images/Group 37.png" alt=""></a>
-    
-  </div>
+        <nav class="navs" aria-label="Primary">
+          <button id="upgrade-button" class="link-button" type="button">
+            <img src="assets/images/Group 44.png" alt="Upgrade" />
+          </button>
+          <a href="boost/boost.html" class="links"
+            ><img src="assets/images/Group 45.png" alt="Boost"
+          /></a>
+          <a href="boost/task/task.html" class="links"
+            ><img src="assets/images/Group 46.png" alt="Tasks"
+          /></a>
+          <a href="boost/task/ref/ref.html" class="links"
+            ><img src="assets/images/Group 37.png" alt="Referrals"
+          /></a>
+        </nav>
+      </section>
     </section>
-  </section>
 
+    <section id="auth-overlay" class="overlay hidden" role="dialog" aria-modal="true">
+      <div class="overlay-content">
+        <button class="overlay-close" type="button" id="close-auth">×</button>
+        <h2 id="auth-title">Sign in</h2>
+        <form id="login-form" class="auth-form" novalidate>
+          <label class="field">
+            <span>Username</span>
+            <input id="login-username" name="username" type="text" autocomplete="username" required />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input
+              id="login-password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </label>
+          <button type="submit" class="primary-action full-width">Sign in</button>
+          <p class="form-switch">
+            No account yet?
+            <button type="button" class="link-button" id="show-register">Create one</button>
+          </p>
+        </form>
 
+        <form id="register-form" class="auth-form hidden" novalidate>
+          <h3>Create your account</h3>
+          <label class="field">
+            <span>Username</span>
+            <input
+              id="register-username"
+              name="username"
+              type="text"
+              autocomplete="username"
+              required
+            />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input
+              id="register-password"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              required
+            />
+          </label>
+          <button type="submit" class="primary-action full-width">Create account</button>
+          <p class="form-switch">
+            Already have an account?
+            <button type="button" class="link-button" id="show-login">Sign in</button>
+          </p>
+        </form>
 
+        <p id="auth-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </section>
 
+    <section id="upgrade-overlay" class="overlay hidden" role="dialog" aria-modal="true">
+      <div class="overlay-content">
+        <button class="overlay-close" type="button" data-close-overlay="upgrade-overlay">×</button>
+        <h2>Upgrade your plan</h2>
+        <p class="overlay-description">Pick a plan to unlock more taps and boost rewards.</p>
+        <ul id="plan-list" class="plan-grid" aria-live="polite"></ul>
+        <p id="upgrade-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </section>
 
+    <section id="cashout-overlay" class="overlay hidden" role="dialog" aria-modal="true">
+      <div class="overlay-content">
+        <button class="overlay-close" type="button" data-close-overlay="cashout-overlay">×</button>
+        <h2>Cash out your points</h2>
+        <p class="overlay-description">
+          Move a portion of your balance into your cash wallet. You can withdraw this amount
+          anytime.
+        </p>
+        <form id="cashout-form" class="auth-form" novalidate>
+          <label class="field">
+            <span>Amount</span>
+            <input id="cashout-amount" name="amount" type="number" min="1" step="1" required />
+          </label>
+          <button type="submit" class="primary-action full-width">Convert to cash</button>
+        </form>
+        <p id="cashout-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </section>
 
-
-
-        
-
- 
-
-        <script src="main.js"></script>
-</body>
+    <script src="main.js"></script>
+  </body>
 </html>
-
