@@ -1,70 +1,59 @@
-
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EthPoint</title>
+    <link rel="stylesheet" href="style.css" />
     <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Kumar One:wght@400&display=swap"
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Krub:wght@700&display=swap"
-  />
-
-</head>
-<body>
-  <section class="containers">
-   
-    <section class="conatiner">
-     <div class="balance-wrapper">
-      <div class="balance">
-        <img src="assets/images/Ellipse 1.png" alt=""> 
-        <span id="balance" itemid="balance">100000</span>
-      </div>
-     </div>
-
-
-     <div class="coin-brand-wrapper">
-        <div class="coin">
-            <img id="icon"  src="assets/images/Ellipse 1.png" alt="">
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Kumar+One:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Krub:wght@700&display=swap"
+    />
+  </head>
+  <body>
+    <section class="containers">
+      <section class="container">
+        <div class="balance-wrapper">
+          <div class="balance">
+            <img src="assets/images/Ellipse 1.png" alt="Token icon" />
+            <span id="balance" aria-live="polite">100000</span>
+          </div>
         </div>
-     </div>
 
+        <div class="coin-brand-wrapper">
+          <div class="coin">
+            <img id="icon" src="assets/images/Ellipse 1.png" alt="Tap to earn" />
+          </div>
+        </div>
 
-  <div class="tap-counter">
-    <div class="counter-area">
-        <p class="initial-count" id="outOff"> 1000</p>
-        <p class="remainig-count" id="remaining"> 1000</p>
-    </div>
-  </div>
+        <div class="tap-counter">
+          <div class="counter-area">
+            <p class="initial-count" id="outOff">1000</p>
+            <p class="remainig-count" id="remaining" aria-live="polite">1000</p>
+          </div>
+        </div>
 
-
-
-  <div class="navs">
-    <a href="index.html" class="links"><img id="upgrade-button" src="assets/images/Group 44.png" alt=""></a>
-    <a href="boost/boost.html" class="links"><img src="assets/images/Group 45.png" alt=""></a>
-    <a href="./boost/task/task.html"  class="links"><img src="assets/images/Group 46.png" alt=""></a>
-    <a href="./boost/task/ref/ref.html" class="links"><img src="assets/images/Group 37.png" alt=""></a>
-    
-  </div>
+        <nav class="navs" aria-label="Primary">
+          <a href="index.html" class="links"
+            ><img id="upgrade-button" src="assets/images/Group 44.png" alt="Upgrade"
+          /></a>
+          <a href="boost/boost.html" class="links"
+            ><img src="assets/images/Group 45.png" alt="Boost" /></a
+          >
+          <a href="boost/task/task.html" class="links"
+            ><img src="assets/images/Group 46.png" alt="Tasks" /></a
+          >
+          <a href="boost/task/ref/ref.html" class="links"
+            ><img src="assets/images/Group 37.png" alt="Referrals" /></a
+          >
+        </nav>
+      </section>
     </section>
-  </section>
 
-
-
-
-
-
-
-
-        
-
- 
-
-        <script src="main.js"></script>
-</body>
+    <script src="main.js"></script>
+  </body>
 </html>
-

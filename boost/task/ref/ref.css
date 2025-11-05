@@ -1,6 +1,18 @@
- .ref-container{
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: space-aroundS;
- }
+.ref-container {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#ref {
+  width: 100%;
+}
+
+#ref p {
+  margin: 0;
+}
+
+#ref i {
+  font-size: 1.1em;
+}
