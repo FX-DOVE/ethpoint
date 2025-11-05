@@ -1,0 +1,238 @@
+:root {
+  color-scheme: dark;
+  --bg: #040b14;
+  --panel: rgba(10, 22, 34, 0.95);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f5f7ff;
+  --muted: rgba(245, 247, 255, 0.6);
+  --accent: #4ade80;
+  --danger: #fb7185;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Krub', sans-serif;
+  background: radial-gradient(circle at top, rgba(24, 68, 125, 0.35), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.admin-app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.admin-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-header h1 {
+  margin: 0 0 0.4rem;
+  font-size: 2rem;
+}
+
+.admin-status {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.admin-status.success {
+  color: var(--accent);
+}
+
+.admin-status.error {
+  color: var(--danger);
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.75rem;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.3);
+}
+
+.grid {
+  display: grid;
+  gap: 1.75rem;
+}
+
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid > .card:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-field span {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.admin-field input,
+.admin-field select {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-size: 1rem;
+  padding: 0.65rem 0.85rem;
+}
+
+.admin-field input[readonly] {
+  background: rgba(255, 255, 255, 0.06);
+  opacity: 0.9;
+}
+
+.admin-button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.admin-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-button.primary {
+  background: linear-gradient(120deg, var(--accent), #22d3ee);
+  color: #052e16;
+}
+
+.admin-button.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.admin-button:hover:not(:disabled),
+.admin-button:focus-visible:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.admin-feedback {
+  min-height: 1.25rem;
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.admin-feedback.success {
+  color: var(--accent);
+}
+
+.admin-feedback.error {
+  color: var(--danger);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+}
+
+thead th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+tbody td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.admin-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: rgba(74, 222, 128, 0.12);
+  color: var(--accent);
+}
+
+.admin-chip.danger {
+  background: rgba(251, 113, 133, 0.12);
+  color: var(--danger);
+}
+
+.admin-row {
+  cursor: pointer;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+}
+
+.table-action {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.table-action select,
+.table-action input {
+  min-width: 120px;
+}
+
+.table-action button {
+  padding: 0.5rem 1.1rem;
+}
+
+.is-hidden {
+  display: none !important;
+}

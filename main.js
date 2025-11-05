@@ -15,6 +15,18 @@ document.addEventListener('DOMContentLoaded', () => {
     cashoutForm: document.getElementById('cashout-form'),
     cashoutAmount: document.getElementById('cashout-amount'),
     cashoutFeedback: document.getElementById('cashout-feedback'),
+    cryptoOverlay: document.getElementById('crypto-overlay'),
+    cryptoForm: document.getElementById('crypto-form'),
+    cryptoPlanName: document.getElementById('crypto-plan-name'),
+    cryptoCurrency: document.getElementById('crypto-currency'),
+    cryptoPrice: document.getElementById('crypto-price'),
+    cryptoFeedback: document.getElementById('crypto-feedback'),
+    cryptoInvoice: document.getElementById('crypto-invoice'),
+    cryptoAmount: document.getElementById('crypto-amount'),
+    cryptoCurrencyLabel: document.getElementById('crypto-currency-label'),
+    cryptoAddress: document.getElementById('crypto-address'),
+    cryptoReference: document.getElementById('crypto-reference'),
+    cryptoCopy: document.getElementById('crypto-copy'),
     authOverlay: document.getElementById('auth-overlay'),
     loginForm: document.getElementById('login-form'),
     loginUsername: document.getElementById('login-username'),
@@ -39,6 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let resetTimer = null;
   let plans = [];
   let currentPlanId = 'free';
+  let cryptoOptions = [];
+  let selectedPlanForCrypto = null;
 
   function setAuthToken(token) {
     authToken = token || '';
@@ -262,6 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then((data) => {
         plans = Array.isArray(data.plans) ? data.plans : [];
+        cryptoOptions = Array.isArray(data.cryptoOptions) ? data.cryptoOptions : [];
         return plans;
       });
   }
@@ -271,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     elements.planList.innerHTML = '';
+    const availableCryptoOptions = cryptoOptions.filter((option) => option.addressAvailable);
     plans.forEach((plan) => {
       const item = document.createElement('li');
       item.className = 'plan-card';
@@ -304,13 +320,13 @@ document.addEventListener('DOMContentLoaded', () => {
         badge.className = 'form-feedback success';
         actions.appendChild(badge);
       } else {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'primary-action';
-        button.textContent = plan.upgradeCost
+        const pointsButton = document.createElement('button');
+        pointsButton.type = 'button';
+        pointsButton.className = 'primary-action';
+        pointsButton.textContent = plan.upgradeCost
           ? `Upgrade for ${plan.upgradeCost.toLocaleString()} pts`
           : 'Switch to this plan';
-        button.addEventListener('click', () => {
+        pointsButton.addEventListener('click', () => {
           elements.upgradeFeedback.textContent = '';
           elements.upgradeFeedback.classList.remove('error', 'success');
           fetchWithAuth('/upgrade', {
@@ -333,7 +349,23 @@ document.addEventListener('DOMContentLoaded', () => {
               elements.upgradeFeedback.classList.add('error');
             });
         });
-        actions.appendChild(button);
+        actions.appendChild(pointsButton);
+
+        if (plan.priceUSD > 0) {
+          const cryptoButton = document.createElement('button');
+          cryptoButton.type = 'button';
+          cryptoButton.className = 'secondary-action';
+          if (availableCryptoOptions.length > 0) {
+            cryptoButton.textContent = `Pay $${plan.priceUSD.toFixed(2)} in crypto`;
+            cryptoButton.addEventListener('click', () => {
+              openCryptoOverlay(plan);
+            });
+          } else {
+            cryptoButton.textContent = 'Crypto payments unavailable';
+            cryptoButton.disabled = true;
+          }
+          actions.appendChild(cryptoButton);
+        }
       }
 
       item.appendChild(header);
@@ -342,6 +374,101 @@ document.addEventListener('DOMContentLoaded', () => {
       item.appendChild(actions);
       elements.planList.appendChild(item);
     });
+  }
+
+  function resetCryptoInvoice() {
+    if (!elements.cryptoInvoice) {
+      return;
+    }
+    elements.cryptoInvoice.classList.add('is-hidden');
+    if (elements.cryptoAmount) {
+      elements.cryptoAmount.textContent = '';
+    }
+    if (elements.cryptoCurrencyLabel) {
+      elements.cryptoCurrencyLabel.textContent = '';
+    }
+    if (elements.cryptoAddress) {
+      elements.cryptoAddress.textContent = '';
+    }
+    if (elements.cryptoReference) {
+      elements.cryptoReference.textContent = '';
+    }
+    if (elements.cryptoCopy) {
+      elements.cryptoCopy.disabled = true;
+    }
+  }
+
+  function renderCryptoOptions() {
+    if (!elements.cryptoCurrency) {
+      return;
+    }
+    elements.cryptoCurrency.innerHTML = '';
+    const enabledOptions = cryptoOptions.filter((option) => option.addressAvailable);
+    if (enabledOptions.length === 0) {
+      const placeholder = document.createElement('option');
+      placeholder.textContent = 'No crypto methods configured yet';
+      placeholder.disabled = true;
+      placeholder.value = '';
+      elements.cryptoCurrency.appendChild(placeholder);
+      elements.cryptoCurrency.disabled = true;
+      return;
+    }
+    enabledOptions.forEach((option, index) => {
+      const opt = document.createElement('option');
+      opt.value = option.id;
+      opt.textContent = option.label;
+      if (index === 0) {
+        opt.selected = true;
+      }
+      elements.cryptoCurrency.appendChild(opt);
+    });
+    elements.cryptoCurrency.disabled = false;
+  }
+
+  function openCryptoOverlay(plan) {
+    if (!ensureAuthenticated()) {
+      return;
+    }
+    selectedPlanForCrypto = plan;
+    resetCryptoInvoice();
+    if (elements.cryptoFeedback) {
+      elements.cryptoFeedback.textContent = '';
+      elements.cryptoFeedback.classList.remove('error', 'success');
+    }
+    if (elements.cryptoPlanName) {
+      elements.cryptoPlanName.textContent = plan.label;
+    }
+    if (elements.cryptoPrice) {
+      const priceText = plan.priceUSD
+        ? `Plan price: $${plan.priceUSD.toFixed(2)} (settled in your chosen token)`
+        : 'Contact support for pricing details.';
+      elements.cryptoPrice.textContent = priceText;
+    }
+    renderCryptoOptions();
+    showOverlay('crypto-overlay');
+  }
+
+  function findCryptoOption(optionId) {
+    return cryptoOptions.find((option) => option.id === optionId);
+  }
+
+  function copyToClipboard(text) {
+    if (!text) {
+      return Promise.resolve();
+    }
+    if (navigator.clipboard?.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    const tempInput = document.createElement('textarea');
+    tempInput.value = text;
+    tempInput.setAttribute('readonly', '');
+    tempInput.style.position = 'absolute';
+    tempInput.style.left = '-9999px';
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    return Promise.resolve();
   }
 
   function fetchState(animate = false) {
@@ -515,6 +642,10 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', (event) => {
       const target = event.currentTarget.getAttribute('data-close-overlay');
       hideOverlay(target);
+      if (target === 'crypto-overlay') {
+        selectedPlanForCrypto = null;
+        resetCryptoInvoice();
+      }
     });
   });
 
@@ -572,6 +703,97 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.cashoutFeedback.classList.add('error');
       });
   });
+
+  if (elements.cryptoForm) {
+    elements.cryptoForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!ensureAuthenticated()) {
+        return;
+      }
+      if (!selectedPlanForCrypto) {
+        elements.cryptoFeedback.textContent = 'Select a plan to continue.';
+        elements.cryptoFeedback.classList.remove('success');
+        elements.cryptoFeedback.classList.add('error');
+        return;
+      }
+      if (!elements.cryptoCurrency || elements.cryptoCurrency.disabled) {
+        elements.cryptoFeedback.textContent = 'Crypto payments are not available right now.';
+        elements.cryptoFeedback.classList.remove('success');
+        elements.cryptoFeedback.classList.add('error');
+        return;
+      }
+      const currency = elements.cryptoCurrency.value;
+      if (!currency) {
+        elements.cryptoFeedback.textContent = 'Choose a cryptocurrency option.';
+        elements.cryptoFeedback.classList.remove('success');
+        elements.cryptoFeedback.classList.add('error');
+        return;
+      }
+      elements.cryptoFeedback.textContent = 'Generating payment instructions...';
+      elements.cryptoFeedback.classList.remove('error', 'success');
+      fetchWithAuth('/upgrade/crypto', {
+        method: 'POST',
+        body: JSON.stringify({ plan: selectedPlanForCrypto.id, currency }),
+      })
+        .then((body) => {
+          if (!body?.payment) {
+            throw new Error('Unable to create payment request.');
+          }
+          const payment = body.payment;
+          const option = findCryptoOption(payment.currency) || { label: payment.currency };
+          if (elements.cryptoAmount && Number.isFinite(Number(payment.amountUSD))) {
+            elements.cryptoAmount.textContent = Number(payment.amountUSD).toFixed(2);
+          }
+          if (elements.cryptoCurrencyLabel) {
+            elements.cryptoCurrencyLabel.textContent = option.label;
+          }
+          if (elements.cryptoAddress) {
+            elements.cryptoAddress.textContent = payment.address;
+          }
+          if (elements.cryptoReference) {
+            elements.cryptoReference.textContent = payment.id;
+          }
+          if (elements.cryptoInvoice) {
+            elements.cryptoInvoice.classList.remove('is-hidden');
+          }
+          if (elements.cryptoCopy) {
+            elements.cryptoCopy.disabled = false;
+          }
+          elements.cryptoFeedback.textContent = 'Payment request created. Complete your transfer and wait for admin confirmation.';
+          elements.cryptoFeedback.classList.remove('error');
+          elements.cryptoFeedback.classList.add('success');
+        })
+        .catch((error) => {
+          elements.cryptoFeedback.textContent = error.message || 'Unable to create payment request.';
+          elements.cryptoFeedback.classList.remove('success');
+          elements.cryptoFeedback.classList.add('error');
+        });
+    });
+  }
+
+  if (elements.cryptoCopy) {
+    elements.cryptoCopy.addEventListener('click', () => {
+      const address = elements.cryptoAddress?.textContent?.trim();
+      if (!address) {
+        return;
+      }
+      copyToClipboard(address)
+        .then(() => {
+          if (elements.cryptoFeedback) {
+            elements.cryptoFeedback.textContent = 'Address copied to clipboard.';
+            elements.cryptoFeedback.classList.remove('error');
+            elements.cryptoFeedback.classList.add('success');
+          }
+        })
+        .catch(() => {
+          if (elements.cryptoFeedback) {
+            elements.cryptoFeedback.textContent = 'Unable to copy automatically. Copy the address manually.';
+            elements.cryptoFeedback.classList.remove('success');
+            elements.cryptoFeedback.classList.add('error');
+          }
+        });
+    });
+  }
 
   if (authToken) {
     fetchWithAuth('/auth/me')

@@ -141,6 +141,41 @@
       </div>
     </section>
 
+    <section id="crypto-overlay" class="overlay hidden" role="dialog" aria-modal="true">
+      <div class="overlay-content">
+        <button class="overlay-close" type="button" data-close-overlay="crypto-overlay">×</button>
+        <h2>Upgrade with crypto</h2>
+        <p class="overlay-description">
+          Securely upgrade to <strong id="crypto-plan-name">your new plan</strong> using your preferred
+          token.
+        </p>
+        <form id="crypto-form" class="auth-form" novalidate>
+          <label class="field">
+            <span>Cryptocurrency</span>
+            <select id="crypto-currency" required></select>
+          </label>
+          <p id="crypto-price" class="overlay-description"></p>
+          <button type="submit" class="primary-action full-width">Generate payment request</button>
+        </form>
+        <div id="crypto-invoice" class="crypto-invoice is-hidden" aria-live="polite">
+          <h3>Payment instructions</h3>
+          <p>
+            Send <strong id="crypto-amount">0.00</strong> USD equivalent in
+            <strong id="crypto-currency-label"></strong> to the address below.
+          </p>
+          <div class="copy-field">
+            <code id="crypto-address"></code>
+            <button id="crypto-copy" type="button" class="secondary-action small">Copy</button>
+          </div>
+          <p class="overlay-description">
+            Reference ID: <strong id="crypto-reference"></strong>. Share your transaction hash with the
+            support team to speed up confirmation.
+          </p>
+        </div>
+        <p id="crypto-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
     <section id="cashout-overlay" class="overlay hidden" role="dialog" aria-modal="true">
       <div class="overlay-content">
         <button class="overlay-close" type="button" data-close-overlay="cashout-overlay">×</button>
@@ -159,6 +194,10 @@
         <p id="cashout-feedback" class="form-feedback" role="status" aria-live="polite"></p>
       </div>
     </section>
+
+    <footer class="site-footer">
+      <a href="admin/index.html" class="admin-link">Admin console</a>
+    </footer>
 
     <script src="main.js"></script>
   </body>

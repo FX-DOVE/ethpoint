@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EthPoint Admin</title>
+    <link rel="stylesheet" href="admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Krub:wght@400;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <main class="admin-app">
+      <header class="admin-header">
+        <div>
+          <h1>EthPoint Admin Console</h1>
+          <p id="admin-status" class="admin-status" role="status" aria-live="polite"></p>
+        </div>
+        <button id="admin-logout" type="button" class="admin-button secondary" disabled>
+          Sign out
+        </button>
+      </header>
+
+      <section id="admin-login" class="card">
+        <h2>Administrator sign in</h2>
+        <form id="admin-login-form" class="admin-form" novalidate>
+          <label class="admin-field">
+            <span>Username</span>
+            <input id="admin-username" name="username" type="text" autocomplete="username" required />
+          </label>
+          <label class="admin-field">
+            <span>Password</span>
+            <input
+              id="admin-password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </label>
+          <button type="submit" class="admin-button primary">Sign in</button>
+        </form>
+        <p id="admin-login-feedback" class="admin-feedback" role="status" aria-live="polite"></p>
+      </section>
+
+      <section id="admin-dashboard" class="is-hidden">
+        <section class="grid">
+          <article class="card">
+            <h2>Users</h2>
+            <p>Total accounts: <strong id="admin-users-total">0</strong></p>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>Plan</th>
+                    <th>Balance</th>
+                    <th>Taps left</th>
+                    <th>Cash</th>
+                    <th>Role</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-users-body"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>Edit user</h2>
+            <form id="admin-user-form" class="admin-form" novalidate>
+              <input id="admin-user-id" name="id" type="hidden" />
+              <label class="admin-field">
+                <span>Selected user</span>
+                <input id="admin-user-name" type="text" readonly />
+              </label>
+              <label class="admin-field">
+                <span>Plan</span>
+                <select id="admin-user-plan"></select>
+              </label>
+              <label class="admin-field">
+                <span>Balance</span>
+                <input id="admin-user-balance" type="number" min="0" step="1" />
+              </label>
+              <label class="admin-field">
+                <span>Tap remaining</span>
+                <input id="admin-user-taps" type="number" min="0" step="1" />
+              </label>
+              <label class="admin-field">
+                <span>Cash balance</span>
+                <input id="admin-user-cash" type="number" min="0" step="1" />
+              </label>
+              <label class="admin-field">
+                <span>Role</span>
+                <select id="admin-user-role">
+                  <option value="user">Player</option>
+                  <option value="admin">Administrator</option>
+                </select>
+              </label>
+              <button type="submit" class="admin-button primary" disabled>Save changes</button>
+            </form>
+            <p id="admin-user-feedback" class="admin-feedback" role="status" aria-live="polite"></p>
+          </article>
+
+          <article class="card">
+            <h2>Pending crypto upgrades</h2>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Plan</th>
+                    <th>Currency</th>
+                    <th>Amount (USD)</th>
+                    <th>Status</th>
+                    <th>TX hash</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="admin-payments-body"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
